@@ -1,0 +1,43 @@
+appName: KiranApp
+server:
+  port: 9090
+  server-header: Kiran Demo Application Server
+  compression:
+      enabled: true
+      min-response-size: 4096
+      mime-types: application/json,application/json+mdm
+  tomcat:
+    remote_ip_header: x-forwarded-for
+    protocol_header: x-forwarded-proto
+spring.mvc:
+  dispatchOptionsRequest: true
+  dispatchTraceRequest: false
+---
+spring:
+  profiles: localBuild
+  http:
+    converters:
+      preferred-json-mapper: jackson
+  datasource:
+    platform: postgresql
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mdm
+    username: mdm
+    password: mdm
+---
+spring:
+  profiles: mysql
+  http:
+    converters:
+      preferred-json-mapper: jackson
+  datasource:
+    platform: mysql
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/kiran
+    username: admin
+    password: admin
+---
+spring:
+  profiles:
+    active: mysql
