@@ -4,3 +4,4 @@ This is a Simple Java Program to demonstrate Continuous Integration and Continuo
 
 ## Compiling with Maven 
 
+Make sure to have default-jdk installed on your jenkins server
